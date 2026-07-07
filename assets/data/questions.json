@@ -1,0 +1,259 @@
+{
+  "questions": [
+    {
+      "id": "q001",
+      "subject": "Quantitative Aptitude",
+      "topic": "Percentage",
+      "question": "What is 15% of 240?",
+      "options": ["32", "36", "38", "40"],
+      "correct": 1,
+      "difficulty": "easy",
+      "explanation": "15% of 240 = (15/100) × 240 = 36"
+    },
+    {
+      "id": "q002",
+      "subject": "Quantitative Aptitude",
+      "topic": "Profit & Loss",
+      "question": "A shopkeeper buys an article for ₹500 and sells it for ₹600. What is the profit percentage?",
+      "options": ["15%", "20%", "25%", "10%"],
+      "correct": 1,
+      "difficulty": "easy",
+      "explanation": "Profit = 600 - 500 = ₹100. Profit% = (100/500) × 100 = 20%"
+    },
+    {
+      "id": "q003",
+      "subject": "Quantitative Aptitude",
+      "topic": "Simple Interest",
+      "question": "Find the simple interest on ₹2000 at 5% per annum for 3 years.",
+      "options": ["₹250", "₹300", "₹350", "₹400"],
+      "correct": 1,
+      "difficulty": "easy",
+      "explanation": "SI = (P × R × T)/100 = (2000 × 5 × 3)/100 = ₹300"
+    },
+    {
+      "id": "q004",
+      "subject": "Quantitative Aptitude",
+      "topic": "Time & Work",
+      "question": "A can complete a work in 10 days and B can complete the same work in 15 days. In how many days can they complete it working together?",
+      "options": ["5 days", "6 days", "7 days", "8 days"],
+      "correct": 1,
+      "difficulty": "medium",
+      "explanation": "A's 1 day work = 1/10, B's 1 day work = 1/15. Combined = 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6. So they complete it in 6 days."
+    },
+    {
+      "id": "q005",
+      "subject": "Quantitative Aptitude",
+      "topic": "Ratio & Proportion",
+      "question": "If A:B = 3:4 and B:C = 6:7, then A:B:C is:",
+      "options": ["9:12:14", "3:4:7", "18:24:28", "6:8:7"],
+      "correct": 0,
+      "difficulty": "medium",
+      "explanation": "A:B = 3:4, B:C = 6:7. To combine, make B equal: A:B = 9:12, B:C = 12:14. So A:B:C = 9:12:14"
+    },
+    {
+      "id": "q006",
+      "subject": "Reasoning",
+      "topic": "Series",
+      "question": "Find the missing number: 2, 6, 12, 20, 30, ?",
+      "options": ["40", "42", "44", "38"],
+      "correct": 1,
+      "difficulty": "easy",
+      "explanation": "Differences: 4, 6, 8, 10, 12. Next number = 30 + 12 = 42"
+    },
+    {
+      "id": "q007",
+      "subject": "Reasoning",
+      "topic": "Analogy",
+      "question": "Doctor : Hospital :: Teacher : ?",
+      "options": ["Student", "School", "Book", "Classroom"],
+      "correct": 1,
+      "difficulty": "easy",
+      "explanation": "A Doctor works in a Hospital, similarly a Teacher works in a School."
+    },
+    {
+      "id": "q008",
+      "subject": "Reasoning",
+      "topic": "Coding-Decoding",
+      "question": "If APPLE is coded as BQQMF, how is MANGO coded?",
+      "options": ["NBOHP", "NBNHP", "OBOIP", "MBNHP"],
+      "correct": 0,
+      "difficulty": "medium",
+      "explanation": "Each letter is replaced by the next letter in the alphabet. M→N, A→B, N→O, G→H, O→P. So MANGO = NBOHP"
+    },
+    {
+      "id": "q009",
+      "subject": "Reasoning",
+      "topic": "Blood Relations",
+      "question": "If A is the son of B, and B is the sister of C, then how is A related to C?",
+      "options": ["Uncle", "Nephew", "Cousin", "Brother"],
+      "correct": 1,
+      "difficulty": "medium",
+      "explanation": "B is C's sister. A is B's son. Therefore A is C's nephew."
+    },
+    {
+      "id": "q010",
+      "subject": "Reasoning",
+      "topic": "Direction Sense",
+      "question": "Rajesh walks 10 km north, then turns right and walks 5 km, then turns right and walks 10 km. In which direction is he from the starting point?",
+      "options": ["North", "South", "East", "West"],
+      "correct": 2,
+      "difficulty": "medium",
+      "explanation": "He walks north 10km, then east 5km, then south 10km. He is 5km east of the start. So he is to the East."
+    },
+    {
+      "id": "q011",
+      "subject": "English",
+      "topic": "Synonyms",
+      "question": "Choose the synonym of 'ELOQUENT':",
+      "options": ["Silent", "Articulate", "Confused", "Dull"],
+      "correct": 1,
+      "difficulty": "easy",
+      "explanation": "Eloquent means fluent or persuasive in speaking or writing. Articulate is its synonym."
+    },
+    {
+      "id": "q012",
+      "subject": "English",
+      "topic": "Antonyms",
+      "question": "Choose the antonym of 'BENEVOLENT':",
+      "options": ["Kind", "Generous", "Malevolent", "Charitable"],
+      "correct": 2,
+      "difficulty": "easy",
+      "explanation": "Benevolent means well-meaning and kindly. Malevolent (wishing evil) is its antonym."
+    },
+    {
+      "id": "q013",
+      "subject": "English",
+      "topic": "Idioms & Phrases",
+      "question": "What does the idiom 'Bite the bullet' mean?",
+      "options": ["To eat quickly", "To endure a painful situation bravely", "To give up easily", "To make a mistake"],
+      "correct": 1,
+      "difficulty": "medium",
+      "explanation": "'Bite the bullet' means to endure a painful or difficult situation with courage."
+    },
+    {
+      "id": "q014",
+      "subject": "English",
+      "topic": "Error Spotting",
+      "question": "Find the error: 'She (A) don't know (B) how to (C) solve this problem (D)'.",
+      "options": ["A", "B", "C", "D"],
+      "correct": 1,
+      "difficulty": "medium",
+      "explanation": "'She' is singular, so it should be 'doesn't know' not 'don't know'."
+    },
+    {
+      "id": "q015",
+      "subject": "General Awareness",
+      "topic": "Indian History",
+      "question": "Who was the first Governor-General of independent India?",
+      "options": ["Jawaharlal Nehru", "Lord Mountbatten", "C. Rajagopalachari", "Dr. Rajendra Prasad"],
+      "correct": 1,
+      "difficulty": "easy",
+      "explanation": "Lord Mountbatten was the first Governor-General of independent India (August 1947 – June 1948)."
+    },
+    {
+      "id": "q016",
+      "subject": "General Awareness",
+      "topic": "Indian Polity",
+      "question": "Which article of the Indian Constitution deals with Right to Education?",
+      "options": ["Article 19", "Article 21", "Article 21A", "Article 32"],
+      "correct": 2,
+      "difficulty": "easy",
+      "explanation": "Article 21A was inserted by the 86th Constitutional Amendment Act, 2002, which provides Right to Education to children aged 6-14 years."
+    },
+    {
+      "id": "q017",
+      "subject": "General Awareness",
+      "topic": "Indian Economy",
+      "question": "What is the full form of SEBI?",
+      "options": [
+        "Securities Exchange Board of India",
+        "Stock Exchange Board of India",
+        "Securities and Exchange Board of India",
+        "Stock and Exchange Board of India"
+      ],
+      "correct": 2,
+      "difficulty": "easy",
+      "explanation": "SEBI stands for Securities and Exchange Board of India, established in 1992 to regulate the securities market."
+    },
+    {
+      "id": "q018",
+      "subject": "General Awareness",
+      "topic": "Indian Geography",
+      "question": "Which is the longest river in India?",
+      "options": ["Godavari", "Yamuna", "Ganga", "Indus"],
+      "correct": 2,
+      "difficulty": "easy",
+      "explanation": "The Ganga is the longest river in India with a total length of about 2,525 km."
+    },
+    {
+      "id": "q019",
+      "subject": "General Awareness",
+      "topic": "Science & Technology",
+      "question": "What is the chemical formula of common salt?",
+      "options": ["NaCl", "KCl", "CaCl2", "MgCl2"],
+      "correct": 0,
+      "difficulty": "easy",
+      "explanation": "Common salt (table salt) is sodium chloride with chemical formula NaCl."
+    },
+    {
+      "id": "q020",
+      "subject": "General Awareness",
+      "topic": "Sports",
+      "question": "How many players are there in a cricket team?",
+      "options": ["9", "10", "11", "12"],
+      "correct": 2,
+      "difficulty": "easy",
+      "explanation": "A cricket team consists of 11 players."
+    },
+    {
+      "id": "q021",
+      "subject": "Quantitative Aptitude",
+      "topic": "Average",
+      "question": "The average of 5 consecutive even numbers is 14. What is the largest number?",
+      "options": ["16", "18", "20", "22"],
+      "correct": 1,
+      "difficulty": "medium",
+      "explanation": "If average is 14, the middle number is 14. Five consecutive even numbers: 10, 12, 14, 16, 18. Largest = 18."
+    },
+    {
+      "id": "q022",
+      "subject": "Quantitative Aptitude",
+      "topic": "HCF & LCM",
+      "question": "Find the HCF of 36 and 48.",
+      "options": ["6", "8", "12", "16"],
+      "correct": 2,
+      "difficulty": "easy",
+      "explanation": "Factors of 36: 1,2,3,4,6,9,12,18,36. Factors of 48: 1,2,3,4,6,8,12,16,24,48. HCF = 12"
+    },
+    {
+      "id": "q023",
+      "subject": "Reasoning",
+      "topic": "Venn Diagrams",
+      "question": "In a class of 100 students, 60 play cricket, 50 play football, and 20 play both. How many students play neither?",
+      "options": ["5", "10", "15", "20"],
+      "correct": 1,
+      "difficulty": "medium",
+      "explanation": "Students playing at least one sport = 60 + 50 - 20 = 90. Neither = 100 - 90 = 10."
+    },
+    {
+      "id": "q024",
+      "subject": "English",
+      "topic": "One Word Substitution",
+      "question": "One who studies the stars and planets:",
+      "options": ["Astrologer", "Astronomer", "Astrophysicist", "Cosmologist"],
+      "correct": 1,
+      "difficulty": "easy",
+      "explanation": "An Astronomer is a scientist who studies celestial bodies like stars, planets, and galaxies."
+    },
+    {
+      "id": "q025",
+      "subject": "General Awareness",
+      "topic": "Awards & Honours",
+      "question": "What is the highest civilian award in India?",
+      "options": ["Padma Shri", "Padma Bhushan", "Padma Vibhushan", "Bharat Ratna"],
+      "correct": 3,
+      "difficulty": "easy",
+      "explanation": "Bharat Ratna is the highest civilian award in India, given for exceptional service of the highest order to the nation."
+    }
+  ]
+}
