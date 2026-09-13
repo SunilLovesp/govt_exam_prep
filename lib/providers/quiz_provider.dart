@@ -1,12 +1,10 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import '../models/question.dart';
 import '../models/quiz_result.dart';
 import '../services/api_service.dart';
 
-enum QuizState { idle, loading, active, paused, completed }
+enum QuizState { idle, loading, active, paused, completed, error }
 
 class QuizProvider extends ChangeNotifier {
   QuizState _state = QuizState.idle;
@@ -16,6 +14,10 @@ class QuizProvider extends ChangeNotifier {
   int _totalSeconds = 0;
   String _testId = '';
   String _testTitle = '';
+  String? _subject;
+  String? _examType;
+  int _questionLimit = 200;
+  String _errorMessage = '';
   Timer? _timer;
 
   QuizState get state => _state;
@@ -25,6 +27,7 @@ class QuizProvider extends ChangeNotifier {
   int get secondsLeft => _totalSeconds - _secondsElapsed;
   String get testId => _testId;
   String get testTitle => _testTitle;
+  String get errorMessage => _errorMessage;
 
   Question? get currentQuestion =>
       _questions.isNotEmpty ? _questions[_currentIndex] : null;
@@ -46,40 +49,49 @@ class QuizProvider extends ChangeNotifier {
     required String testId,
     required String testTitle,
     required int durationMinutes,
+    String? subject,
+    String? examType,
+    int questionLimit = 200,
   }) async {
-    _state = QuizState.loading;
     _testId = testId;
     _testTitle = testTitle;
+    _subject = subject;
+    _examType = examType;
+    _questionLimit = questionLimit;
     _totalSeconds = durationMinutes * 60;
+    await _fetchQuestions();
+  }
+
+  Future<void> retry() => _fetchQuestions();
+
+  Future<void> _fetchQuestions() async {
+    _timer?.cancel();
+    _state = QuizState.loading;
+    _errorMessage = '';
+    _questions = [];
     _secondsElapsed = 0;
     _currentIndex = 0;
     notifyListeners();
 
     try {
-      // Try fetching from backend API first — use ALL available questions
-      final allQuestions = await ApiService().fetchQuestions();
-      allQuestions.shuffle();
-      _questions = allQuestions; // no artificial limit
-      _state = QuizState.active;
-      _startTimer();
-    } catch (_) {
-      // API unavailable — fall back to bundled local JSON
-      try {
-        final jsonStr =
-            await rootBundle.loadString('assets/data/questions.json');
-        final data = jsonDecode(jsonStr) as Map<String, dynamic>;
-        final allQuestions = (data['questions'] as List)
-            .map((q) => Question.fromJson(q as Map<String, dynamic>))
-            .toList();
-        allQuestions.shuffle();
-        _questions = allQuestions;
-        _state = QuizState.active;
-        _startTimer();
-      } catch (_) {
-        _questions = _generateDummyQuestions();
+      final questions = await ApiService().fetchQuestions(
+        subject: _subject,
+        examType: _examType,
+        limit: _questionLimit,
+      );
+      if (questions.isEmpty) {
+        _state = QuizState.error;
+        _errorMessage =
+            'No questions available for this test yet. Add questions from the admin panel and try again.';
+      } else {
+        questions.shuffle();
+        _questions = questions;
         _state = QuizState.active;
         _startTimer();
       }
+    } catch (e) {
+      _state = QuizState.error;
+      _errorMessage = e is ApiException ? e.message : e.toString();
     }
     notifyListeners();
   }
@@ -157,6 +169,7 @@ class QuizProvider extends ChangeNotifier {
     _questions = [];
     _currentIndex = 0;
     _secondsElapsed = 0;
+    _errorMessage = '';
     notifyListeners();
   }
 
@@ -164,32 +177,5 @@ class QuizProvider extends ChangeNotifier {
   void dispose() {
     _timer?.cancel();
     super.dispose();
-  }
-
-  List<Question> _generateDummyQuestions() {
-    final subjects = [
-      'Quantitative Aptitude',
-      'Reasoning',
-      'English',
-      'General Awareness',
-    ];
-    final questions = <Question>[];
-    int id = 1;
-    for (int i = 0; i < 20; i++) {
-      final subject = subjects[i % subjects.length];
-      questions.add(Question(
-        id: 'q${id++}',
-        subject: subject,
-        topic: 'Practice',
-        question:
-            'Sample question ${i + 1} for $subject?\n(This is a placeholder. Add real questions in assets/data/questions.json)',
-        options: ['Option A', 'Option B', 'Option C', 'Option D'],
-        correctIndex: i % 4,
-        explanation:
-            'The correct answer is Option ${String.fromCharCode(65 + (i % 4))}. Detailed explanation would appear here.',
-        difficulty: ['easy', 'medium', 'hard'][i % 3],
-      ));
-    }
-    return questions;
   }
 }

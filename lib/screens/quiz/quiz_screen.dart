@@ -52,6 +52,7 @@ class _QuizScreenState extends State<QuizScreen> {
       testId: widget.testId,
       testTitle: title,
       durationMinutes: found?.durationMinutes ?? 60,
+      questionLimit: found?.totalQuestions ?? 200,
     );
   }
 
@@ -105,6 +106,39 @@ class _QuizScreenState extends State<QuizScreen> {
     }
     if (quiz.state == QuizState.completed) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+    if (quiz.state == QuizState.error) {
+      return Scaffold(
+        appBar: AppBar(title: Text(quiz.testTitle, style: const TextStyle(fontSize: 15))),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.cloud_off_rounded, size: 56, color: _kNotVisited),
+                const SizedBox(height: 16),
+                const Text(
+                  'Could not load questions',
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  quiz.errorMessage,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton.icon(
+                  onPressed: () => context.read<QuizProvider>().retry(),
+                  icon: const Icon(Icons.refresh_rounded),
+                  label: const Text('Retry'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
     }
 
     final q = quiz.currentQuestion;

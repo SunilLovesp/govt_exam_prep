@@ -1,7 +1,16 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/question.dart';
 import '../core/constants/app_config.dart';
+
+class ApiException implements Exception {
+  final String message;
+  ApiException(this.message);
+
+  @override
+  String toString() => message;
+}
 
 class ApiService {
   static String get _baseUrl => AppConfig.baseUrl;
@@ -9,10 +18,7 @@ class ApiService {
   /// Returns { total, bySubject: Map<subject, count>, byDifficulty: Map<difficulty, count> }
   Future<Map<String, dynamic>> fetchStats() async {
     final uri = Uri.parse('$_baseUrl/questions/stats');
-    final response = await http.get(uri).timeout(const Duration(seconds: 10));
-    if (response.statusCode != 200) {
-      throw Exception('Server returned ${response.statusCode}');
-    }
+    final response = await _get(uri);
     final data = jsonDecode(response.body) as Map<String, dynamic>;
     final bySubjectList = data['bySubject'] as List;
     final byDiffList = data['byDifficulty'] as List;
@@ -44,16 +50,30 @@ class ApiService {
       'limit': limit.toString(),
     });
 
-    final response = await http.get(uri).timeout(const Duration(seconds: 10));
-
-    if (response.statusCode != 200) {
-      throw Exception('Server returned ${response.statusCode}');
-    }
+    final response = await _get(uri);
 
     final data = jsonDecode(response.body) as Map<String, dynamic>;
     final list = data['questions'] as List;
     return list
         .map((q) => Question.fromJson(q as Map<String, dynamic>))
         .toList();
+  }
+
+  Future<http.Response> _get(Uri uri) async {
+    http.Response response;
+    try {
+      response = await http.get(uri).timeout(const Duration(seconds: 10));
+    } on TimeoutException {
+      throw ApiException('The server at $_baseUrl took too long to respond.');
+    } on http.ClientException catch (e) {
+      throw ApiException('Cannot reach the server at $_baseUrl. ${e.message}');
+    } catch (e) {
+      throw ApiException('Cannot reach the server at $_baseUrl. $e');
+    }
+    if (response.statusCode != 200) {
+      throw ApiException(
+          'Server returned ${response.statusCode} for ${uri.path}.');
+    }
+    return response;
   }
 }
